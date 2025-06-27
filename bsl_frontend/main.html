@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BSL Character Recognition</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background: #f9fbfc;
+      color: #0f172a;
+    }
+    .section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .hero {
+      background: linear-gradient(to right, #e0f2ff, #e0f2ff);
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      color: #0366d6;
+      margin: 0.3em 0;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: auto;
+    }
+    .badge {
+      background: #e0ecff;
+      color: #0366d6;
+      padding: 6px 12px;
+      border-radius: 999px;
+      display: inline-block;
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+    }
+    .buttons {
+      margin-top: 20px;
+    }
+    .btn {
+      padding: 12px 20px;
+      margin: 10px;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .btn.red {
+      background: #ef4444;
+      color: #fff;
+    }
+    .btn.yellow {
+      background: #facc15;
+
+    }
+    .btn.red:hover {
+  background-color: white; 
+  color: #ef4444;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn.yellow:hover {
+  background-color: darkgoldenrod; /* darker yellow */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.btn {
+  transition: all 0.2s ease;
+}
+
+    .features {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .feature-box {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      width: 250px;
+    }
+    .feature-box h3 {
+      color: #0366d6;
+      margin: 10px 0 5px;
+    }
+    .chart-img {
+  width: 100%;
+  max-width: 900px; /* increased from 700px */
+  margin: 30px auto;
+  display: block;
+  border-radius: 10px;
+}
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+      padding: 0 20px;
+    }
+    .step {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    .step h4 {
+      margin: 10px 0;
+      color: #0366d6;
+    }
+    .webcam-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
+      margin-bottom: 20px;
+    }
+    .video-box, .image-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .instructions {
+      max-width: 300px;
+      text-align: left;
+      margin: 0; /* Ensure there's no default offset */
+      padding-top: 0; /* remove top padding if any */
+    }
+    .instructions li {
+      margin-bottom: 8px;
+    }
+    video {
+      width: 640px;   /* or 640px for larger */
+      height: 360px;  
+      border: 2px solid #ccc;
+      border-radius: 10px;
+    }
+    .btn-recognition {
+      background: #facc15;
+      padding: 10px 16px;
+      border: none;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  
+    .features-section {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin: 40px 20px;
+      text-align: center;
+    }
+
+    .feature-box {
+      background: #f9f9f9;
+      border-radius: 16px;
+      padding: 20px;
+      width: 300px;
+      margin: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .feature-icon {
+      font-size: 36px;
+      color: #0366d6;
+      margin-bottom: 12px;
+    }
+    .step-icon {
+      font-size: 28px;
+      color: #0366d6;
+      margin-bottom: 10px;
+    }
+    #processed-image { border: 2px solid #2563eb; border-radius: 8px; margin-top: 10px; }
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 30px; }
+    button { margin: 5px; padding: 8px 16px; font-size: 1em; }
+    .output-label { font-weight: bold; margin-top: 10px; }
+    .output-value { font-size: 1.5em; color: #2563eb; }
+    #webcam { border: 2px solid #aaa; border-radius: 8px; }
+    
+  </style>
+</head>
+<body>
+
+  <section class="section hero">
+    
+    <h1>British Sign Language (BSL)<br>Character Recognition</h1>
+    <p>Our advanced computer vision system recognizes BSL characters in real-time, making communication more accessible for everyone.</p>
+    <div class="buttons">
+      <button class="btn red" onclick="document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });">Try It Now</button>
+      <button class="btn yellow" onclick="document.getElementById('how-it-works').scrollIntoView({ behavior: 'smooth' });">Learn How It Works</button>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="features-section">
+      <div class="feature-box">
+        <i class="fas fa-camera feature-icon"></i>
+        <h3>Real-time Recognition</h3>
+        <p>Instantly identifies BSL characters through your webcam with high accuracy.</p>
+      </div>
+      <div class="feature-box">
+        <i class="fas fa-brain feature-icon"></i>
+        <h3>Deep Learning Powered</h3>
+        <p>Trained on diverse datasets for reliable character-level recognition.</p>
+      </div>
+      <div class="feature-box">
+        <i class="fas fa-plug feature-icon"></i>
+        <h3>Easy Integration</h3>
+        <p>Simple API to integrate with your applications or websites.</p>
+      </div>
+    </div>
+    <img src="BSL-Fingerspelling-Alphabet.png" alt="BSL Alphabet Chart" class="chart-img">
+  </section>
+
+  <section class="section" id="how-it-works">
+    <h2>How It Works</h2>
+    <p>Our advanced BSL recognition system uses deep learning and computer vision to transform the way we understand sign language.</p>
+    <div class="steps">
+      <div class="step">
+        <h4><i class="fas fa-database step-icon-inline"></i>  Data Collection & Preprocessing</h4>
+        <p>Dataset is normalized, cleaned, and prepared to train the model.</p>
+      </div>
+      
+      <div class="step">
+        <h4><i class="fas fa-brain step-icon-inline"></i>  Model Training</h4>
+        <p>Our CNN learns the key patterns and features of each sign.</p>
+      </div>
+      
+      <div class="step">
+        <h4><i class="fas fa-video step-icon-inline"></i>  Real-time Detection</h4>
+        <p>The system captures live webcam feed and detects hand signs instantly.</p>
+      </div>
+      
+      <div class="step">
+        <h4><i class="fas fa-language step-icon-inline"></i>  Character Mapping & Output</h4>
+        <p>Recognized gesture is mapped to a character and displayed.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="demo">
+    <section class="section" id="how-it-works">
+
+    <h2>Try It Yourself</h2>
+    <p>Enable your webcam and sign a letter to see instant recognition results.</p>
+    <div class="webcam-container">
+      <div class="video-box">
+        <div>Live Webcam</div>
+        <video id="webcam" width="320" height="240" autoplay muted></video>
+      </div>
+      <div class="image-box">
+        <div>Processed Frame</div>
+        <img id="processed-image" width="320" height="240" alt="Processed frame" />
+      </div>
+    </div>
+    <button id="start-webcam">Start Webcam</button>
+    <button id="stop-webcam">Stop Webcam</button>
+    <button id="finish-word">Finish Word</button>
+    <div class="output-label">Predicted Letter:</div>
+    <div class="output-value" id="predicted-letter"></div>
+    <div class="output-label">Current Word:</div>
+    <div class="output-value" id="current-word"></div>
+
+  </section>
+
+  <script src="main.js"></script>
+</body>
+</html>

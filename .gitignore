@@ -1,0 +1,7 @@
+# Ignore large files
+bsl_backend/bsl_model.pkl
+bsl_backend/BSL_Dataset.csv
+*.pkl
+*.joblib
+*.zip
+*.csv

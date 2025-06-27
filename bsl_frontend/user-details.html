@@ -1,0 +1,108 @@
+<!-- user-details.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Details</title>
+  <style>
+    body {
+      background-color: #005eb8;
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+    .form-container {
+      background-color: white;
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    h1 {
+      text-align: center;
+      color: white;
+      
+    }
+    h3 {
+      
+      color: #222;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-bottom: 16px;
+    }
+    button {
+      width: 100%;
+      background-color: #2563eb;
+      color: white;
+      padding: 14px;
+      font-size: 1em;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1d4ed8;
+    }
+  </style>
+</head>
+<body>
+  <h1>User Details</h1>
+  <div class="form-container">
+    <h3>Personal Information</h3>
+    <form id="userForm">
+      <label for="name">Name</label>
+      <input type="text" id="name" placeholder="Enter your full name" required>
+
+      <label for="age">Age</label>
+      <input type="number" id="age" placeholder="Enter your age" required>
+
+      <label for="gender">Gender</label>
+      <select id="gender" required>
+        <option value="">Select your gender</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+
+      <label for="health">Health Status</label>
+      <select id="health" required>
+        <option value="">Select your health status</option>
+        <option>Normal</option>
+        <option>Deaf</option>
+        <option>Blind</option>
+        <option>Mute</option>
+      </select>
+
+      <button type="submit">Start Sign Recognition</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("userForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      // You can optionally store user details in localStorage here if needed
+      window.location.href = "main.html"; // Redirect to BSL main page
+    });
+  </script>
+  <script>
+    document.getElementById("userForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById("name").value;
+      localStorage.setItem("userName", name); // Save name
+      
+      window.location.href = "main.html"; // Redirect
+    });
+  </script>
+</body>
+</html>
