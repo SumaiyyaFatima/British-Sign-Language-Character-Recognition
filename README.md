@@ -4,4 +4,3 @@ British Sign Language Character Recognition is a real-time gesture recognition s
 
 This project is built using Python, OpenCV, and scikit-learn, along with a lightweight frontend interface for live demo interaction. It serves as a foundation for assistive technologies that aim to bridge communication gaps for the hearing and speech-impaired community. The modular design also allows easy extension to support more gestures, custom datasets, or integration with speech synthesis tools.
 
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/09422a79-9cd3-4bf1-abe2-a948c0f2cc6c" />
